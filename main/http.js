@@ -1,5 +1,6 @@
 const http = require('http')
 const fs = require('fs')
+const template = require('art-template')
 
 const server = http.createServer()
 
@@ -14,17 +15,11 @@ server.on('request', (req, res) => {
             if (err) {
                 return res.end('cannot find www dir')
             }
-            // 将得到的文件与文件名替换到template.html中
-            let content = ''
-            files.forEach(item => {
-                content += `<tr>
-                <td data-value="1.txt"><a class="icon file" draggable="true"
-                        href="/Users/lianglanlan/Desktop/code/study/node/01/1.txt">${item}</a></td>
-                <td class="detailsColumn" data-value="5">5 B</td>
-                <td class="detailsColumn" data-value="1577188842">2019/12/24 下午8:00:42</td>
-            </tr>`
+            // 使用模板引擎替换data中内容
+            data = template.render(data.toString(), {
+                title: '123',
+                files: files
             })
-            data = data.toString().replace('^_^', content)
             res.end(data)
         })
 

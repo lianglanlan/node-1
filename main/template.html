@@ -62,7 +62,7 @@
             display: none;
         }
     </style>
-    <title id="title">/Users/lianglanlan/Desktop/code/study/node/01/ 的索引</title>
+    <title id="title">{{title}}</title>
 </head>
 
 <body>
@@ -90,7 +90,16 @@
                 </th>
             </tr>
         </thead>
-        <tbody id="tbody">^_^</tbody>
+        <tbody id="tbody">
+            {{each files}}
+            <tr>
+                <td data-value="1.txt"><a class="icon file" draggable="true"
+                        href="/Users/lianglanlan/Desktop/code/study/node/01/1.txt">{{$value}}</a></td>
+                <td class="detailsColumn" data-value="5">5 B</td>
+                <td class="detailsColumn" data-value="1577188842">2019/12/24 下午8:00:42</td>
+            </tr>
+            {{/each}}
+        </tbody>
     </table>
 </body>
 
