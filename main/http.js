@@ -1,6 +1,7 @@
 const http = require('http')
 const fs = require('fs')
 const template = require('art-template')
+const nunjucks = require('nunjucks')
 
 const server = http.createServer()
 
@@ -16,7 +17,7 @@ server.on('request', (req, res) => {
                 return res.end('cannot find www dir')
             }
             // 使用模板引擎替换data中内容
-            data = template.render(data.toString(), {
+            data = nunjucks.renderString(data.toString(), {
                 title: '123',
                 files: files
             })
